@@ -1,6 +1,9 @@
 from tkinter import *
-from PIL import Image, ImageTk
-from utils import system_handlers
+from pages.Start import  Start
+from pages.Weather import Weather
+from pages.Sensors import Sensors
+from pages.CameraView import CameraView
+
 
 class App(Tk):
     def __init__(self, *args, **kwargs):
@@ -24,67 +27,20 @@ class App(Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        # This part constructs each frame that we want to add to our App
         self.frames = {}
+        for F in (Start, Weather, Sensors, CameraView):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
 
-        for F in (StartPage, PageOne, PageTwo):
-            frame = F(container, self)  # Constructor for each frame
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky='nsew')
-
-        # Here we are setting the start_page
-        self.show_frame(StartPage)
+        self.show_frame("Start")
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):
         frame = self.frames[frame_name]  # If we approach the second way in which we build only a general Page class this line needs to be commented
         frame.tkraise()  # Shows the frame
 
-class StartPage(Frame):
-    # Parent is the container and controller is the app
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
-        label = Label(self, text="StartPage")
-        label.pack()
-
-        # Navigation through pages
-        page_one = Button(self, text='Page One', command=lambda: controller.show_frame(PageOne))
-        page_one.place(x=725, y=465)
-        page_two = Button(self, text='Page Two', command=lambda: controller.show_frame(PageTwo))
-        page_two.place(x=10, y=465)
-
-        img = Image.open('button.png')
-        self.photo = ImageTk.PhotoImage(img)
-        img_button1 = Button(self, image=self.photo, border=0, command=lambda: system_handlers.call_script('graphs/live_plot.py'))
-        img_button1.place(x=90, y=80)
-        img_button2 = Button(self, image=self.photo, border=0)
-        img_button2.place(x=520, y=80)
-        img_button3 = Button(self, image=self.photo, border=0)
-        img_button3.place(x=90, y=280)
-        img_button4 = Button(self, image=self.photo, border=0)
-        img_button4.place(x=520, y=280)
-
-
-
-class PageOne(Frame):
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
-        label = Label(self, text="PageOne")
-        label.pack()
-        start_page = Button(self, text='Start Page', command=lambda: controller.show_frame(StartPage))
-        start_page.place(x=10, y=465)
-        page_two = Button(self, text='Page Two', command=lambda: controller.show_frame(PageTwo))
-        page_two.place(x=725, y=465)
-
-class PageTwo(Frame):
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
-        label = Label(self, text="PageTwo")
-        label.pack()
-        start_page = Button(self, text='Start Page', command=lambda: controller.show_frame(StartPage))
-        start_page.place(x=725, y=465)
-        page_one = Button(self, text='Page One', command=lambda: controller.show_frame(PageOne))
-        page_one.place(x=10, y=465)
 
 class MainMenu:
     def __init__(self, master):
@@ -103,21 +59,6 @@ class MainMenu:
         root_menu.add_cascade(label='Log IN', menu=login_menu)
         login_menu.add_command(label='Sign UP')
 
-
-# TO DO: //
-
-# class Page(Frame):
-#     # Parent is the container and controller is the app
-#     def __init__(self, parent, controller):
-#         Frame.__init__(self, parent)
-#         self.grid(row=0, column=0, sticky='nsew')
-#
-#     def create_label(self, label_name):
-#         label = Label(self, text=label_name)
-#         return label
-
-# //
-
-
-app = App()
-app.mainloop()
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
