@@ -11,7 +11,7 @@ class App(Tk):
         # MainMenu
         MainMenu(self)
 
-        # Setting the resolution fixed
+        # Setting the resolution fixed\
         self.geometry("800x500")
         self.resizable(0, 0)
 
