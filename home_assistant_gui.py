@@ -38,7 +38,10 @@ class App(Tk):
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):
-        frame = self.frames[frame_name]  # If we approach the second way in which we build only a general Page class this line needs to be commented
+        frame = self.frames[frame_name]
+        if frame_name == "Weather":
+            frame.get_location()
+            frame.get_weather()
         frame.tkraise()  # Shows the frame
 
 

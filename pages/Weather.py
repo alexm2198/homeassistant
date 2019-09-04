@@ -8,13 +8,13 @@ class Weather(Frame):
 
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
-        title_label = Label(self, text='Weather', font='Bahnschrift')
+        self.get_location()
+        title_label = Label(self, text=f'Weather in {self.city}:', font=('Bahnschrift', 32))
         title_label.place(relx =0.5, rely=0.1, anchor=CENTER)
 
         start_page = Button(self, text='Start Page', command=lambda: controller.show_frame("Start"))
         start_page.place(relx=0.9, rely=0.9)
 
-        self.get_location()
         self.get_weather()
 
     def get_weather(self):
