@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from utils import system_handlers
 
 class App(Tk):
     def __init__(self, *args, **kwargs):
@@ -54,7 +55,7 @@ class StartPage(Frame):
 
         img = Image.open('button.png')
         self.photo = ImageTk.PhotoImage(img)
-        img_button1 = Button(self, image=self.photo, border=0)
+        img_button1 = Button(self, image=self.photo, border=0, command=lambda: system_handlers.call_script('graphs/live_plot.py'))
         img_button1.place(x=90, y=80)
         img_button2 = Button(self, image=self.photo, border=0)
         img_button2.place(x=520, y=80)
@@ -116,5 +117,7 @@ class MainMenu:
 #         return label
 
 # //
+
+
 app = App()
 app.mainloop()
