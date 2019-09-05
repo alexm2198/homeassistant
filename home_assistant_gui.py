@@ -1,5 +1,5 @@
 from tkinter import *
-from pages.Start import Start
+from pages.Start import  Start
 from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
@@ -11,7 +11,7 @@ class App(Tk):
         # MainMenu
         MainMenu(self)
 
-        # Setting the resolution fixed
+        # Setting the resolution fixed\
         self.geometry("800x500")
         self.resizable(0, 0)
 
@@ -39,6 +39,9 @@ class App(Tk):
     # Shows different frames inside the app
     def show_frame(self, frame_name):
         frame = self.frames[frame_name]
+        if frame_name == "Weather":
+            frame.get_location()
+            frame.get_weather()
         frame.tkraise()  # Shows the frame
 
 
@@ -58,7 +61,6 @@ class MainMenu:
         login_menu = Menu(file_menu, tearoff=False)
         root_menu.add_cascade(label='Log IN', menu=login_menu)
         login_menu.add_command(label='Sign UP')
-
 
 if __name__ == "__main__":
     app = App()
