@@ -2,6 +2,8 @@ from tkinter import *
 from utils import system_handlers
 import os
 from graphs import get_sensor_value
+from PIL import Image,ImageTk
+
 
 live_plot_path = os.getcwd() + r"\graphs"
 
@@ -15,13 +17,19 @@ class Sensors(Frame):
         self.sensor_val = StringVar()
         self.sensor_val.set((get_sensor_value.current_sensor_value('data\data1_in.txt')))
 
-        sensor_name = Label(self, text='Senzor General [U.M]: ').place(relx=0.39, rely=0.2, anchor=CENTER)
-        sensor_value = Label(self, textvariable=self.sensor_val, width=7, bg='white').place(relx=0.5, rely=0.2, anchor=CENTER)
-        self.graph_button = Button(self, text='graph', width=10, bg='red', fg='white', command=lambda: system_handlers.call_script(rf'{live_plot_path}\live_plot.py'))
+        sensor_name = Label(self, text='Senzor General [U.M]: ')
+        sensor_name.place(relx=0.39, rely=0.2, anchor=CENTER)
+        sensor_value = Label(self, textvariable=self.sensor_val, width=7, bg='white')
+        sensor_value.place(relx=0.5, rely=0.2, anchor=CENTER)
+        self.graph_button = Button(self, text='graph', width=10, bg='red', fg='white',
+                                   command=lambda: system_handlers.call_script(rf'{live_plot_path}\live_plot.py'))
         self.graph_button.place(relx=0.6, rely=0.2, anchor=CENTER)
 
-        start_page = Button(self, text='Start Page', command=lambda: controller.show_frame("Start"))
-        start_page.place(x=725, y=465)
+        temp_image = Image.open("resources/button_home.png")
+        self.home_button_image = ImageTk.PhotoImage(temp_image)
+        home_button = Button(self, image=self.home_button_image, border=0,
+                             command=lambda: controller.show_frame("Start"))
+        home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
 
         self.update_sensor_data('data\data1_in.txt')
 
