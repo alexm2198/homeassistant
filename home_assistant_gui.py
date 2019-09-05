@@ -1,5 +1,5 @@
 from tkinter import *
-from pages.Start import  Start
+from pages.Start import Start
 from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
@@ -38,7 +38,7 @@ class App(Tk):
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):
-        frame = self.frames[frame_name]  # If we approach the second way in which we build only a general Page class this line needs to be commented
+        frame = self.frames[frame_name]
         frame.tkraise()  # Shows the frame
 
 
@@ -58,6 +58,7 @@ class MainMenu:
         login_menu = Menu(file_menu, tearoff=False)
         root_menu.add_cascade(label='Log IN', menu=login_menu)
         login_menu.add_command(label='Sign UP')
+
 
 if __name__ == "__main__":
     app = App()

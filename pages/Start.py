@@ -1,7 +1,5 @@
 from tkinter import *
 from PIL import Image,ImageTk
-from pages.Weather import Weather
-from pages.Sensors import Sensors
 
 
 class Start(Frame):

@@ -1,5 +1,6 @@
 from matplotlib import pyplot
 from matplotlib import animation
+from datetime import date
 
 # Global variable used for displaying once the plot's legend
 global run_once
@@ -34,5 +35,6 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     pyplot.grid(True)
 
 
-anim = animation.FuncAnimation(fig, data_extractor, fargs=("data/data_in.txt", "---Amatei's DATA COLLECTOR---", "Time [s]", "Temperature [grd.C]"), interval=1000)
+title = date.today().strftime("%d/%m/%Y")
+anim = animation.FuncAnimation(fig, data_extractor, fargs=("data/data1_in.txt", title, "Time [s]", "Temperature [grd.C]"), interval=1000)
 pyplot.show()

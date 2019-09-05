@@ -1,5 +1,8 @@
-import os
+import subprocess
 
 
+# opens a new process and runs the script given
 def call_script(script_path):
-    os.system(f"python {script_path}")
+    subprocess.Popen([script_path], shell=True, creationflags=subprocess.SW_HIDE)
+
+
