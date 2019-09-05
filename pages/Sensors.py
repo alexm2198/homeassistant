@@ -13,6 +13,7 @@ class Sensors(Frame):
         Frame.__init__(self, parent)
         title_label = Label(self, text='Sensors').place(relx =0.5, rely=0.1, anchor=CENTER)
 
+        # Sensor part
         # For textvariable is needed StringVar() type
         self.sensor_val = StringVar()
         self.sensor_val.set((get_sensor_value.current_sensor_value('data\data1_in.txt')))
@@ -25,6 +26,7 @@ class Sensors(Frame):
                                    command=lambda: system_handlers.call_script(rf'{live_plot_path}\live_plot.py'))
         self.graph_button.place(relx=0.6, rely=0.2, anchor=CENTER)
 
+        # Home Button
         temp_image = Image.open("resources/button_home.png")
         self.home_button_image = ImageTk.PhotoImage(temp_image)
         home_button = Button(self, image=self.home_button_image, border=0,
@@ -34,7 +36,12 @@ class Sensors(Frame):
         self.update_sensor_data('data\data1_in.txt')
 
     def update_sensor_data(self, data_path):
+        counter = 0
         new_val = get_sensor_value.current_sensor_value(data_path)
         self.sensor_val.set(new_val)
-        self.graph_button.config(bg='green')
+        if get_sensor_value.sensor_status():
+            self.graph_button.config(bg='green')
+            counter += 1
+        else:
+            self.graph_button.config(bg='red')
         self.master.after(1000, lambda: self.update_sensor_data(data_path))
