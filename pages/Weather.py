@@ -1,9 +1,12 @@
-from tkinter import *
-import geoip2.database
 import socket
-import requests, json
-from PIL import Image,ImageTk
+from tkinter import *
+
+import geoip2.database
+import requests
+from PIL import Image, ImageTk
+
 from utils import globals
+
 
 class Weather(Frame):
     city = "Bucharest"
@@ -72,6 +75,7 @@ class Weather(Frame):
             pass
 
     def set_image(self):
+        '''Based on the current weather desciption, sets the image accordingly'''
         filename = ""
 
         if self.id < 300:
@@ -97,6 +101,7 @@ class Weather(Frame):
         image_label.place(relx=0.5, rely=0.35, anchor=CENTER)
 
     def set_labels(self):
+        '''Update the text in the labels to match current weather variables'''
         self.temp_label.config(text=f"Temperature: {self.temp}°C")
         self.pressure_label.config(text=f"Pressure: {self.pressure} mmHg")
         self.humidity_label.config(text=f"Humidity: {self.humidity}%")

@@ -1,9 +1,10 @@
 from tkinter import *
-from pages.Start import  Start
+from pages.Start import Start
 from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
 from utils import globals
+
 
 class App(Tk):
 
@@ -60,6 +61,7 @@ class MainMenu:
         login_menu = Menu(file_menu, tearoff=False)
         root_menu.add_cascade(label='Log IN', menu=login_menu)
         login_menu.add_command(label='Sign UP')
+
 
 if __name__ == "__main__":
     app = App()
