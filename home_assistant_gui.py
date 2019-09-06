@@ -4,23 +4,19 @@ from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
 
-
 class App(Tk):
+
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         # MainMenu
         MainMenu(self)
-
         # Setting the resolution fixed\
-        self.geometry("800x500")
+        self.geometry("1280x720")
         self.resizable(0, 0)
-
         # Setting the favicon
         self.iconbitmap('favicon.ico')
-
         # Setting the title
         self.title("Home Assistant")
-
         # Setup Frame
         container = Frame(self)
         container.pack(side='top', fill='both', expand=True)
@@ -30,7 +26,7 @@ class App(Tk):
         self.frames = {}
         for F in (Start, Weather, Sensors, CameraView):
             page_name = F.__name__
-            frame = F(parent=container, controller=self)
+            frame = F(parent=container, controller=self, bg="#c7e4f2")
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
@@ -42,6 +38,7 @@ class App(Tk):
         if frame_name == "Weather":
             frame.get_location()
             frame.get_weather()
+            frame.set_image()
         frame.tkraise()  # Shows the frame
 
 

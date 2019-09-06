@@ -4,8 +4,8 @@ from PIL import Image,ImageTk
 
 class Start(Frame):
     # Parent is the container and controller is the app
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+    def __init__(self, parent, controller, bg):
+        Frame.__init__(self, parent, bg=bg)
 
         self.button_images = {}
         for image_name in ("weather", "sensors", "camera", "calendar"):
