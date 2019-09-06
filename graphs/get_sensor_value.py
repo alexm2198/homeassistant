@@ -1,12 +1,3 @@
-from datetime import date
-
-
-# path to the file that contains the values send by the sensor in this day
-global UNIVERSAL_SENSOR
-UNIVERSAL_SENSOR = 'data/universal/universal_data_'+date.today().strftime("%d-%m-%Y")+".txt"
-
-
-
 # returns the current value that sensor indicates
 def current_sensor_value(sensor_data_file):
     value = -1
