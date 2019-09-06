@@ -10,13 +10,13 @@ live_plot_path = os.getcwd() + r"\graphs"
 class Sensors(Frame):
     def __init__(self, parent, controller, bg):
         Frame.__init__(self, parent, bg=bg)
-        title_label = Label(self, text='Home Sensors', font=('Bahnschrift', 32), bg=bg)
+        title_label = Label(self, text='Home Sensors', font=(globals.UNIVERSAL_FONT, 32), bg=bg)
         title_label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         # Sensor part
         # For textvariable is needed StringVar() type
         self.sensor_val = StringVar()
-        self.sensor_val.set((get_sensor_value.current_sensor_value(globals.universal_sensor)))
+        self.sensor_val.set((get_sensor_value.current_sensor_value(globals.UNIVERSAL_SENSOR)))
 
         sensor_name = Label(self, text='Senzor General [U.M]: ')
         sensor_name.place(relx=0.39, rely=0.2, anchor=CENTER)
@@ -33,7 +33,7 @@ class Sensors(Frame):
                              command=lambda: controller.show_frame("Start"))
         home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
 
-        self.update_sensor_data(globals.universal_sensor)
+        self.update_sensor_data(globals.UNIVERSAL_SENSOR)
 
     def update_sensor_data(self, data_path):
         counter = 0

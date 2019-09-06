@@ -41,7 +41,7 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 def animate_plot():
     title = date.today().strftime("%d/%m/%Y")
     anim = animation.FuncAnimation(fig, data_extractor,
-                                   fargs=(globals.universal_sensor, title, "Time [s]", "Temperature [grd.C]"), interval=5000)
+                                   fargs=(globals.UNIVERSAL_SENSOR, title, "Time [s]", "Temperature [grd.C]"), interval=5000)
     pyplot.show()
 
 animate_plot()
