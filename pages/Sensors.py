@@ -8,9 +8,10 @@ live_plot_path = os.getcwd() + r"\graphs"
 
 
 class Sensors(Frame):
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
-        title_label = Label(self, text='Home Sensors', font=('Bahnschrift', 32)).place(relx=0.5, rely=0.1, anchor=CENTER)
+    def __init__(self, parent, controller, bg):
+        Frame.__init__(self, parent, bg=bg)
+        title_label = Label(self, text='Home Sensors', font=('Bahnschrift', 32), bg=bg)
+        title_label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         # Sensor part
         # For textvariable is needed StringVar() type
@@ -28,7 +29,7 @@ class Sensors(Frame):
         # Home Button
         temp_image = Image.open("resources/button_home.png")
         self.home_button_image = ImageTk.PhotoImage(temp_image)
-        home_button = Button(self, image=self.home_button_image, border=0,
+        home_button = Button(self, image=self.home_button_image, border=0, bg=bg, activebackground=bg,
                              command=lambda: controller.show_frame("Start"))
         home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
 

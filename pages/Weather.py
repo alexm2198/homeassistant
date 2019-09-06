@@ -21,7 +21,7 @@ class Weather(Frame):
 
         temp_image = Image.open("resources/button_home.png")
         self.home_button_image = ImageTk.PhotoImage(temp_image)
-        home_button = Button(self, image=self.home_button_image, border=0, bg="black",
+        home_button = Button(self, image=self.home_button_image, border=0, bg=bg, activebackground=bg,
                              command=lambda: controller.show_frame("Start"))
         home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
 
