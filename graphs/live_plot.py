@@ -1,6 +1,8 @@
 from matplotlib import pyplot
 from matplotlib import animation
 from datetime import date
+from utils import globals
+
 
 # Global variable used for displaying once the plot's legend
 global run_once
@@ -21,10 +23,11 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     for coord in lines:
         if len(coord) > 1:
             x, y = coord.split(",")
-            x_coordinates.append(int(x))
+            x_coordinates.append(x)
             y_coordinates.append(int(y))
 
     global run_once
+    pyplot.locator_params(axis='x', nbins=10)
     pyplot.plot(x_coordinates, y_coordinates, color='#000066', linestyle='-', marker='o', label='coord')
     if run_once:
         pyplot.legend()
@@ -35,6 +38,10 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     pyplot.grid(True)
 
 
-title = date.today().strftime("%d/%m/%Y")
-anim = animation.FuncAnimation(fig, data_extractor, fargs=("data/data1_in.txt", title, "Time [s]", "Temperature [grd.C]"), interval=1000)
-pyplot.show()
+def animate_plot():
+    title = date.today().strftime("%d/%m/%Y")
+    anim = animation.FuncAnimation(fig, data_extractor,
+                                   fargs=(globals.universal_sensor, title, "Time [s]", "Temperature [grd.C]"), interval=5000)
+    pyplot.show()
+
+animate_plot()

@@ -17,7 +17,7 @@ class Weather(Frame):
 
         self.get_location()
         title_label = Label(self, text=f'Weather in {self.city}:', font=('Bahnschrift', 32))
-        title_label.place(relx =0.5, rely=0.1, anchor=CENTER)
+        title_label.place(relx=0.5, rely=0.1, anchor=CENTER)
 
         temp_image = Image.open("resources/button_home.png")
         self.home_button_image = ImageTk.PhotoImage(temp_image)
@@ -53,6 +53,7 @@ class Weather(Frame):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
         ip = s.getsockname()[0]
+        print(ip)
         reader = geoip2.database.Reader('resources/GeoLite2-City.mmdb')
         s.close()
 
