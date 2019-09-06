@@ -44,4 +44,4 @@ class Sensors(Frame):
             counter += 1
         else:
             self.graph_button.config(bg='red')
-        self.master.after(5000, lambda: self.update_sensor_data(data_path))
+        self.master.after(1000, lambda: self.update_sensor_data(data_path))

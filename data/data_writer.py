@@ -13,7 +13,7 @@ def data_writer(file_to_write):
         time_axis = f"{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}"
         data_to_write = str(random.randint(0, 50))
         open(file_to_write, "a").write(f'{time_axis},{data_to_write}\n')
-        time.sleep(5)
+        time.sleep(1)
 
 
 data_writer('universal/universal_data_' + date.today().strftime("%d-%m-%Y") + '.txt')
