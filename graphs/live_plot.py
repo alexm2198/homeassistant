@@ -1,18 +1,15 @@
-from matplotlib import pyplot, dates
+from matplotlib import pyplot
 from matplotlib import animation
-from datetime import date, datetime
+from datetime import date
 from utils import globals
-import numpy as np
-from graphs import get_sensor_value
 
 
 # Global variable used for displaying once the plot's legend
 global run_once
 run_once = True
 
-fig = pyplot.figure(figsize=(10, 7))
-# format for X -axis displaying only hours and minutes
-myFormat = dates.DateFormatter('%H:%M:%S')
+fig = pyplot.figure()
+
 
 def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     try:
@@ -26,17 +23,12 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     for coord in lines:
         if len(coord) > 1:
             x, y = coord.split(",")
-            x_coordinates.append(datetime.strptime(x, '%H:%M:%S'))
+            x_coordinates.append(x)
             y_coordinates.append(int(y))
 
     global run_once
-    ax = pyplot.subplot()
-    ax.xaxis_date()
-    ax.xaxis.set_major_formatter(myFormat)
-    x_dates = dates.date2num(x_coordinates)
-    if(get_sensor_value.sensor_status(globals.universal_sensor)):
-        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(0.00011570), right=x_dates[len(x_dates)-1]+np.float64(0.00001157))
-    pyplot.plot_date(x_coordinates, y_coordinates, color='#000066', linestyle='-', marker='o', label='coord')
+    pyplot.locator_params(axis='x', nbins=10)
+    pyplot.plot(x_coordinates, y_coordinates, color='#000066', linestyle='-', marker='o', label='coord')
     if run_once:
         pyplot.legend()
         run_once = False
@@ -49,7 +41,7 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 def animate_plot():
     title = date.today().strftime("%d/%m/%Y")
     anim = animation.FuncAnimation(fig, data_extractor,
-                                   fargs=(globals.universal_sensor, title, "Time [Hrs:Mins:Sec]", "Temperature [grd.C]"), interval=1000)
+                                   fargs=(globals.universal_sensor, title, "Time [s]", "Temperature [grd.C]"), interval=5000)
     pyplot.show()
 
 animate_plot()

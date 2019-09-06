@@ -1,8 +1,10 @@
 from tkinter import *
-from pages.Start import  Start
+from pages.Start import Start
 from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
+from utils import globals
+
 
 class App(Tk):
     def __init__(self, *args, **kwargs):
@@ -25,7 +27,7 @@ class App(Tk):
         self.frames = {}
         for F in (Start, Weather, Sensors, CameraView):
             page_name = F.__name__
-            frame = F(parent=container, controller=self, bg="#c7e4f2")
+            frame = F(parent=container, controller=self, bg=globals.UNIVERSAL_BG)
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
@@ -38,6 +40,7 @@ class App(Tk):
             frame.get_location()
             frame.get_weather()
             frame.set_image()
+            frame.set_labels()
         frame.tkraise()  # Shows the frame
 
 
@@ -57,6 +60,7 @@ class MainMenu:
         login_menu = Menu(file_menu, tearoff=False)
         root_menu.add_cascade(label='Log IN', menu=login_menu)
         login_menu.add_command(label='Sign UP')
+
 
 if __name__ == "__main__":
     app = App()
