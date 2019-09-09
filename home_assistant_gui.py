@@ -4,6 +4,7 @@ from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
 from utils import system_handlers, globals
+import os
 
 
 class App(Tk):
@@ -32,7 +33,10 @@ class App(Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("Start")
-        system_handlers.call_script("utils/data_collector.py")
+
+        # path = getcwd() + r"\utils\data_collector.py"
+        # self.tcp_server = subprocess.Popen(path, shell=True, creationflags=subprocess.SW_HIDE)
+        self.tcp_server = system_handlers.call_script(r"utils\data_collector.py")
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):
@@ -44,6 +48,15 @@ class App(Tk):
             frame.set_labels()
         frame.tkraise()  # Shows the frame
 
+    def close_server(self):
+        try:
+            os.system(f"taskkill /f /im Python.exe")
+        except:
+            for line in os.popen("ps ax | grep -i python | grep -v grep"):
+                fields = line.split()
+                pid = fields[0]
+                os.kill(int(pid), signal.SIGKILL)
+        self.destroy()
 
 class MainMenu:
     def __init__(self, master):
@@ -65,4 +78,5 @@ class MainMenu:
 
 if __name__ == "__main__":
     app = App()
+    app.protocol('WM_DELETE_WINDOW', lambda: app.close_server())
     app.mainloop()

@@ -5,7 +5,7 @@ from utils import globals
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to the port
-server_address = (globals.MASTER_HOSTNAME, globals.MASTER_PORT)
+server_address = ("rob-dduta-wx", 64326)
 print('Starting up on {} port {}'.format(*server_address))
 sock.bind(server_address)
 
