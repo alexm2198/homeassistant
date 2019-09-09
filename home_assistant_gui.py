@@ -7,7 +7,6 @@ from utils import system_handlers, globals
 
 
 class App(Tk):
-
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         # MainMenu
