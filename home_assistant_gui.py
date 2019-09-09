@@ -5,6 +5,7 @@ from pages.Sensors import Sensors
 from pages.CameraView import CameraView
 from utils import system_handlers, globals
 import os
+import signal
 
 
 class App(Tk):
@@ -36,7 +37,7 @@ class App(Tk):
 
         # path = getcwd() + r"\utils\data_collector.py"
         # self.tcp_server = subprocess.Popen(path, shell=True, creationflags=subprocess.SW_HIDE)
-        self.tcp_server = system_handlers.call_script(r"utils\data_collector.py")
+        self.tcp_server = system_handlers.call_script(r"utils/data_collector.py")
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):

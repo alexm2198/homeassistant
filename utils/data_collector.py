@@ -1,11 +1,12 @@
 import socket
+from data import data_writer
 from utils import globals
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to the port
-server_address = ("rob-dduta-wx", 64326)
+server_address = ("rob-amatei-wx", 64326)
 print('Starting up on {} port {}'.format(*server_address))
 sock.bind(server_address)
 
@@ -23,6 +24,15 @@ while True:
         while True:
             data = connection.recv(32)
             if data:
+                #  Collecting data
+                str_data = str(data)
+                hum, temp = str_data.split(" ")
+                hum = hum.replace("b'", "")
+                temp = temp.replace("'", "")
+                # Writing data to files
+                data_writer.data_writer(globals.HUM_SENSOR, hum)
+                data_writer.data_writer(globals.TEMP_SENSOR, temp)
+
                 print('received {!r}'.format(data))
             else:
                 break

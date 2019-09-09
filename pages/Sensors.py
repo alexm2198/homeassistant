@@ -4,7 +4,7 @@ import os
 from graphs import get_sensor_value
 from PIL import Image, ImageTk
 
-live_plot_path = os.getcwd() + r"\graphs"
+live_plot_path = os.getcwd() + r"/graphs"
 
 
 class Sensors(Frame):
@@ -15,15 +15,15 @@ class Sensors(Frame):
 
         # Sensor part
         # For textvariable is needed StringVar() type
-        self.sensor_val = StringVar()
-        self.sensor_val.set((get_sensor_value.current_sensor_value(globals.UNIVERSAL_SENSOR)))
+        self.temp_sensor_val = StringVar()
+        self.temp_sensor_val.set((get_sensor_value.current_sensor_value(globals.TEMP_SENSOR)))
 
-        sensor_name = Label(self, text='Senzor General [U.M]: ')
-        sensor_name.place(relx=0.39, rely=0.2, anchor=CENTER)
-        sensor_value = Label(self, textvariable=self.sensor_val, width=7, bg='white')
-        sensor_value.place(relx=0.5, rely=0.2, anchor=CENTER)
+        temp_name = Label(self, text='Temperatura [°C]: ')
+        temp_name.place(relx=0.39, rely=0.2, anchor=CENTER)
+        temp_value = Label(self, textvariable=self.temp_sensor_val, width=7, bg='white')
+        temp_value.place(relx=0.5, rely=0.2, anchor=CENTER)
         self.graph_button = Button(self, text='graph', width=10, bg='red', fg='white',
-                                   command=lambda: system_handlers.call_script(r"graphs\live_plot.py"))
+                                   command=lambda: system_handlers.call_script(r"graphs/live_plot.py"))
         self.graph_button.place(relx=0.6, rely=0.2, anchor=CENTER)
 
         # Home Button
@@ -33,15 +33,15 @@ class Sensors(Frame):
                              command=lambda: controller.show_frame("Start"))
         home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
 
-        self.update_sensor_data(globals.UNIVERSAL_SENSOR)
+        self.update_sensor_data(globals.TEMP_SENSOR)
 
     def update_sensor_data(self, data_path):
         counter = 0
         new_val = get_sensor_value.current_sensor_value(data_path)
-        self.sensor_val.set(new_val)
+        self.temp_sensor_val.set(new_val)
         if get_sensor_value.sensor_status(data_path):
             self.graph_button.config(bg='green')
             counter += 1
         else:
             self.graph_button.config(bg='red')
-        self.master.after(1000, lambda: self.update_sensor_data(data_path))
+        self.master.after(3000, lambda: self.update_sensor_data(data_path))
