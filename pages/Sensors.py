@@ -23,7 +23,7 @@ class Sensors(Frame):
         sensor_value = Label(self, textvariable=self.sensor_val, width=7, bg='white')
         sensor_value.place(relx=0.5, rely=0.2, anchor=CENTER)
         self.graph_button = Button(self, text='graph', width=10, bg='red', fg='white',
-                                   command=lambda: system_handlers.call_script(rf'{live_plot_path}\live_plot.py'))
+                                   command=lambda: system_handlers.call_script(r"graphs\live_plot.py"))
         self.graph_button.place(relx=0.6, rely=0.2, anchor=CENTER)
 
         # Home Button

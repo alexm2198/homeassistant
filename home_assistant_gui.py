@@ -3,7 +3,7 @@ from pages.Start import Start
 from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
-from utils import globals
+from utils import system_handlers, globals
 
 
 class App(Tk):
@@ -33,6 +33,7 @@ class App(Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("Start")
+        system_handlers.call_script("utils/data_collector.py")
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):
