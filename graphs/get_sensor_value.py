@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # returns the current value that sensor indicates
 def current_sensor_value(sensor_data_file):
     value = -1

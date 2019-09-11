@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from tkinter import *
 from pages.Start import Start
 from pages.Weather import Weather
@@ -16,8 +17,6 @@ class App(Tk):
         # Setting the resolution fixed\
         self.geometry("1280x720")
         self.resizable(0, 0)
-        # Setting the favicon
-        self.iconbitmap('favicon.ico')
         # Setting the title
         self.title("Home Assistant")
         # Setup Frame
@@ -53,7 +52,7 @@ class App(Tk):
         try:
             os.system(f"taskkill /f /im Python.exe")
         except:
-            for line in os.popen("ps ax | grep -i python | grep -v grep"):
+            for line in os.popen("ps ax | grep -i " + "*python*" + " | grep -v grep"):
                 fields = line.split()
                 pid = fields[0]
                 os.kill(int(pid), signal.SIGKILL)

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from tkinter import *
 from utils import system_handlers, globals
 import os
