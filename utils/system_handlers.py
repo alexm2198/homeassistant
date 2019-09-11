@@ -7,5 +7,5 @@ from os import getcwd
 
 def call_script(script_name):
     path = getcwd() + rf"/{script_name}"
-    proc = subprocess.Popen([path], shell=True, creationflags=subprocess.SW_HIDE)
+    proc = subprocess.Popen([path], shell=True)
     return proc

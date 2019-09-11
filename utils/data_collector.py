@@ -7,7 +7,7 @@ from utils import globals
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to the port
-server_address = ("rob-amatei-wx", 64326)
+server_address = (globals.MASTER_HOSTNAME, 64326)
 print('Starting up on {} port {}'.format(*server_address))
 sock.bind(server_address)
 
@@ -24,6 +24,7 @@ while True:
         # Receive the data in small chunks and retransmit it
         while True:
             data = connection.recv(32)
+
             if data:
                 #  Collecting data
                 str_data = str(data)
