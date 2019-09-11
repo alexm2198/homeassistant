@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from datetime import date
 
 # Path to the file that contains the values send by the sensor in this day

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import socket
 from data import data_writer
 from utils import globals

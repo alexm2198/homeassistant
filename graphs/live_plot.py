@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from matplotlib import pyplot, dates
 from matplotlib import animation
 from datetime import date, datetime
