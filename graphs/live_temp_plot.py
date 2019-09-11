@@ -35,12 +35,12 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 
     global run_once
     ax = pyplot.subplot()
-    ax.set_ylim([15, 35])
+    ax.set_ylim([min(y_coordinates)-1, max(y_coordinates)+1])
     ax.xaxis_date()
     ax.xaxis.set_major_formatter(myFormat)
     x_dates = dates.date2num(x_coordinates)
     if(get_sensor_value.sensor_status(globals.TEMP_SENSOR)):
-        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(3600*time_unit), right=x_dates[len(x_dates)-1]+np.float64(100*time_unit))
+        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(600*time_unit), right=x_dates[len(x_dates)-1]+np.float64(100*time_unit))
     pyplot.plot_date(x_coordinates, y_coordinates, color='#000066', linestyle='-', linewidth=1, marker=None, label='Temperatura')
     if run_once:
         pyplot.legend()
