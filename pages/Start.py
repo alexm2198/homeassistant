@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from tkinter import *
-from PIL import Image,ImageTk
+from PIL import Image, ImageTk
 
 
 class Start(Frame):
@@ -20,7 +20,7 @@ class Start(Frame):
                                command=lambda: controller.show_frame("Sensors"))
         sensor_button.place(relx=0.75, rely=0.25, anchor=CENTER)
         camera_button = Button(self, image=self.button_images["camera"], border=0, bg=bg, activebackground=bg,
-                             command=lambda: controller.show_frame("CameraView"))
+                               command=lambda: controller.show_frame("CameraView"))
         camera_button.place(relx=0.25, rely=0.75, anchor=CENTER)
-        calendar_button = Button(self, image=self.button_images["calendar"], border=0, bg=bg, activebackground=bg,)
+        calendar_button = Button(self, image=self.button_images["calendar"], border=0, bg=bg, activebackground=bg, )
         calendar_button.place(relx=0.75, rely=0.75, anchor=CENTER)

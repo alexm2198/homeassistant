@@ -13,7 +13,7 @@ while True:
         print('connecting to {} port {}'.format(*server_address))
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect(server_address)
-    
+
         while True:
             # Send data
             hum, temp = Adafruit_DHT.read_retry(11, 14)

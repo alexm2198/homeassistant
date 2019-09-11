@@ -6,7 +6,6 @@ from utils import globals
 import numpy as np
 from graphs import get_sensor_value
 
-
 # Global variable used for displaying once the plot's legend
 global run_once
 run_once = True
@@ -17,6 +16,7 @@ time_unit = 0.00001157
 fig = pyplot.figure(figsize=(10, 7))
 # format for X -axis displaying only hours and minutes
 myFormat = dates.DateFormatter('%H:%M:%S')
+
 
 def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     try:
@@ -35,16 +35,19 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 
     global run_once
     ax = pyplot.subplot()
-    ax.set_ylim([min(y_coordinates)-1, max(y_coordinates)+1])
+    ax.set_ylim([min(y_coordinates) - 1, max(y_coordinates) + 1])
     ax.xaxis_date()
     ax.xaxis.set_major_formatter(myFormat)
     x_dates = dates.date2num(x_coordinates)
-    if(get_sensor_value.sensor_status(globals.TEMP_SENSOR)):
-        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(600*time_unit), right=x_dates[len(x_dates)-1]+np.float64(100*time_unit))
-    pyplot.plot_date(x_coordinates, y_coordinates, color='#000066', linestyle='-', linewidth=1, marker=None, label='Temperatura')
+    if get_sensor_value.sensor_status(globals.TEMP_SENSOR):
+        ax.set_xlim(left=x_dates[len(x_dates) - 1] - np.float64(600 * time_unit),
+                    right=x_dates[len(x_dates) - 1] + np.float64(100 * time_unit))
+    pyplot.plot_date(x_coordinates, y_coordinates, color='#000066', linestyle='-',
+                     linewidth=1, marker=None, label='Temperatura')
     if run_once:
         pyplot.legend()
         run_once = False
+
     pyplot.title(graph_title)
     pyplot.xlabel(x_label)
     pyplot.ylabel(y_label)
@@ -54,7 +57,9 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 def animate_plot():
     title = date.today().strftime("%d/%m/%Y")
     anim = animation.FuncAnimation(fig, data_extractor,
-                                   fargs=(globals.TEMP_SENSOR, title, "Time [H:M:S]", "Temperature [grd.C]"), interval=3000)
+                                   fargs=(globals.TEMP_SENSOR, title, "Time [H:M:S]", "Temperature [grd.C]"),
+                                   interval=3000)
     pyplot.show()
+
 
 animate_plot()

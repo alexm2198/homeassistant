@@ -22,12 +22,15 @@ def static_vars(**kwargs):
         for k in kwargs:
             setattr(func, k, kwargs[k])
         return func
+
     return decorate
 
 
 # Determines if the sensor is sending data or not
 global counter
 counter = 2
+
+
 @static_vars(file_check='data/empty.txt')
 @static_vars(file='data/empty.txt')
 def sensor_status(sensor_data_file):

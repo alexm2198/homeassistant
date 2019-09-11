@@ -25,7 +25,7 @@ class Sensors(Frame):
         temp_value = Label(self, textvariable=self.temp_sensor_val, width=7, bg='white')
         temp_value.place(relx=0.5, rely=0.2, anchor=CENTER)
         self.temp_button = Button(self, text='graph', width=10, bg='red', fg='white',
-                                   command=lambda: system_handlers.call_script(r"graphs/live_temp_plot.py"))
+                                  command=lambda: system_handlers.call_script(r"graphs/live_temp_plot.py"))
         self.temp_button.place(relx=0.6, rely=0.2, anchor=CENTER)
 
         # Humidity Sensor
@@ -37,7 +37,7 @@ class Sensors(Frame):
         hum_value = Label(self, textvariable=self.hum_sensor_val, width=7, bg='white')
         hum_value.place(relx=0.5, rely=0.3, anchor=CENTER)
         self.hum_button = Button(self, text='graph', width=10, bg='red', fg='white',
-                                   command=lambda: system_handlers.call_script(r"graphs/live_hum_plot.py"))
+                                 command=lambda: system_handlers.call_script(r"graphs/live_hum_plot.py"))
         self.hum_button.place(relx=0.6, rely=0.3, anchor=CENTER)
 
         # Home Button
@@ -56,7 +56,7 @@ class Sensors(Frame):
         sensor_update.set(new_val)
         if get_sensor_value.sensor_status(data_path):
             blink_status.config(bg='green')
-            print('green '+ data_path)
+            print('green ' + data_path)
             counter += 1
         else:
             blink_status.config(bg='red')

@@ -39,7 +39,7 @@ class Weather(Frame):
         self.humidity_label.place(relx=0.5, rely=0.8, anchor=CENTER)
 
     def get_weather(self):
-        '''Gets information about the weather from the OpenWeather API'''
+        """Gets information about the weather from the OpenWeather API"""
         api_key = globals.OPENWEATHER_API_KEY
         api_address = 'http://api.openweathermap.org/data/2.5/weather?appid=' + api_key + '&q=' + str(self.city)
         response = requests.get(api_address)
@@ -57,10 +57,10 @@ class Weather(Frame):
             print("Error while getting weather")
 
     def get_location(self):
-        '''
+        """
         Temporarily opens a socket to ping a standard server and retrieve the IP of the device and set the city
         based on IP
-        '''
+        """
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
         ip = s.getsockname()[0]
@@ -76,7 +76,7 @@ class Weather(Frame):
             pass
 
     def set_image(self):
-        '''Based on the current weather desciption, sets the image accordingly'''
+        """Based on the current weather desciption, sets the image accordingly"""
         filename = ""
 
         if self.id < 300:
@@ -102,7 +102,7 @@ class Weather(Frame):
         image_label.place(relx=0.5, rely=0.35, anchor=CENTER)
 
     def set_labels(self):
-        '''Update the text in the labels to match current weather variables'''
+        """Update the text in the labels to match current weather variables"""
         self.temp_label.config(text=f"Temperature: {self.temp}°C")
         self.pressure_label.config(text=f"Pressure: {self.pressure} mmHg")
         self.humidity_label.config(text=f"Humidity: {self.humidity}%")
