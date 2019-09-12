@@ -33,9 +33,6 @@ class App(Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("Start")
-
-        # path = getcwd() + r"\utils\data_collector.py"
-        # self.tcp_server = subprocess.Popen(path, shell=True, creationflags=subprocess.SW_HIDE)
         self.tcp_server = system_handlers.call_script(r"utils/data_collector.py")
 
     # Shows different frames inside the app
