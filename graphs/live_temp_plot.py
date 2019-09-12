@@ -18,6 +18,7 @@ fig = pyplot.figure(figsize=(10, 7))
 # format for X -axis displaying only hours and minutes
 myFormat = dates.DateFormatter('%H:%M:%S')
 
+
 def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     try:
         data_in = open(path_to_data_file, 'r').read()
@@ -40,9 +41,11 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     ax.xaxis_date()
     ax.xaxis.set_major_formatter(myFormat)
     x_dates = dates.date2num(x_coordinates)
-    if(get_sensor_value.sensor_status(globals.TEMP_SENSOR)):
-        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(3600*time_unit), right=x_dates[len(x_dates)-1]+np.float64(600*time_unit))
-    pyplot.plot_date(x_coordinates, y_coordinates, color='#000066', linestyle='-', linewidth=1, marker=None, label='Temperatura')
+    if get_sensor_value.sensor_status(globals.TEMP_SENSOR):
+        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(3600*time_unit),
+                    right=x_dates[len(x_dates)-1]+np.float64(600*time_unit))
+    pyplot.plot_date(x_coordinates, y_coordinates, color='#000066', linestyle='-',
+                     linewidth=1, marker=None, label='Temperatura')
     if run_once:
         pyplot.legend()
         run_once = False
@@ -55,7 +58,8 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 def animate_plot():
     title = date.today().strftime("%d/%m/%Y")
     anim = animation.FuncAnimation(fig, data_extractor,
-                                   fargs=(globals.TEMP_SENSOR, title, "Time [H:M:S]", "Temperature [grd.C]"), interval=3000)
+                                   fargs=(globals.TEMP_SENSOR,title,"Time [H:M:S]", "Temperature [grd.C]"),
+                                   interval=3000)
     pyplot.show()
 
 animate_plot()
