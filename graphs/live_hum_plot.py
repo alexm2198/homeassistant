@@ -29,8 +29,9 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     for coord in lines:
         if len(coord) > 1:
             x, y = coord.split(",")
-            x_coordinates.append(datetime.strptime(x, '%H:%M:%S'))
-            y_coordinates.append(float(y))
+            if y != 'None':
+                x_coordinates.append(datetime.strptime(x, '%H:%M:%S'))
+                y_coordinates.append(float(y))
 
     global run_once
     ax = pyplot.subplot()
@@ -39,7 +40,7 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
     ax.xaxis.set_major_formatter(myFormat)
     x_dates = dates.date2num(x_coordinates)
     if(get_sensor_value.sensor_status(globals.HUM_SENSOR)):
-        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(600*time_unit), right=x_dates[len(x_dates)-1]+np.float64(100*time_unit))
+        ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(3600*time_unit), right=x_dates[len(x_dates)-1]+np.float64(600*time_unit))
     pyplot.plot_date(x_coordinates, y_coordinates, color='#43B0B7', linestyle='-', linewidth=1, marker=None, label='Umiditate')
     if run_once:
         pyplot.legend()

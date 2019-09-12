@@ -51,14 +51,10 @@ class Sensors(Frame):
         self.update_sensor_data(globals.HUM_SENSOR, self.hum_sensor_val, self.hum_button)
 
     def update_sensor_data(self, data_path, sensor_update, blink_status):
-        counter = 0
         new_val = get_sensor_value.current_sensor_value(data_path)
         sensor_update.set(new_val)
         if get_sensor_value.sensor_status(data_path):
             blink_status.config(bg='green')
-            print('green '+ data_path)
-            counter += 1
         else:
             blink_status.config(bg='red')
-            print('red ' + data_path)
         self.master.after(3000, lambda: self.update_sensor_data(data_path, sensor_update, blink_status))
