@@ -43,7 +43,7 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
         ax.set_xlim(left=x_dates[len(x_dates)-1]-np.float64(3600*time_unit),
                     right=x_dates[len(x_dates)-1]+np.float64(600*time_unit))
     pyplot.plot_date(x_coordinates, y_coordinates, color='#43B0B7', linestyle='-',
-                     linewidth=1, marker=None, label='Umiditate')
+                     linewidth=1, marker=None, label='Humidity [%]')
     if run_once:
         pyplot.legend()
         run_once = False
@@ -56,7 +56,7 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 def animate_plot():
     title = date.today().strftime("%d/%m/%Y")
     anim = animation.FuncAnimation(fig, data_extractor,
-                                   fargs=(globals.HUM_SENSOR, title, "Time [H:M:S]", "Umiditate [%]"),
+                                   fargs=(globals.HUM_SENSOR, title, "Time [H:M:S]", "Humidity [%]"),
                                    interval=3000)
     pyplot.show()
 

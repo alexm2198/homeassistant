@@ -51,11 +51,14 @@ def sensor_status(sensor_data_file):
                 return True  # Sensor is ON
         else:
             coord = lines[len(lines) - 2]
-            data_time, y_vals = coord.split(",")
-            data_time_in_sec = clock_time_to_seconds(data_time)
-            if 'None' in coord:
-                return False
-            elif time_in_sec - data_time_in_sec > timer:
-                return False
+            if len(coord) > 1:
+                data_time, y_vals = coord.split(",")
+                data_time_in_sec = clock_time_to_seconds(data_time)
+                if 'None' in coord:
+                    return False
+                elif time_in_sec - data_time_in_sec > timer:
+                    return False
+                else:
+                    return True
             else:
-                return True
+                return False

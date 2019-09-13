@@ -15,6 +15,7 @@ run_once = True
 time_unit = 0.00001157
 
 fig = pyplot.figure(figsize=(10, 7))
+
 # format for X -axis displaying only hours and minutes
 myFormat = dates.DateFormatter('%H:%M:%S')
 
@@ -58,7 +59,7 @@ def data_extractor(i, path_to_data_file, graph_title, x_label, y_label):
 def animate_plot():
     title = date.today().strftime("%d/%m/%Y")
     anim = animation.FuncAnimation(fig, data_extractor,
-                                   fargs=(globals.TEMP_SENSOR,title,"Time [H:M:S]", "Temperature [grd.C]"),
+                                   fargs=(globals.TEMP_SENSOR, title, "Time [H:M:S]", "Temperature [°C]"),
                                    interval=3000)
     pyplot.show()
 

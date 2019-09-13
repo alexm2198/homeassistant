@@ -40,6 +40,10 @@ class Sensors(Frame):
                                    command=lambda: system_handlers.call_script(r"graphs/live_hum_plot.py"))
         self.hum_button.place(relx=0.6, rely=0.3, anchor=CENTER)
 
+        # Last Week Data Button
+        last_week = Button(self, text='Last Week Data', bg='white', fg='darkblue',
+                                   command=lambda: system_handlers.call_script(r"graphs/plot_all.py"))
+        last_week.place(relx=0.5, rely=0.4, anchor=CENTER)
         # Home Button
         temp_image = Image.open("resources/button_home.png")
         self.home_button_image = ImageTk.PhotoImage(temp_image)
