@@ -12,7 +12,7 @@ from pathlib import Path
 # !!! TIME INTERVAL FOR PLOTTING: 1 sec = 0.00001157 time units
 time_unit = 0.00001157
 
-fig = pyplot.figure('Last Week Data - Homeassistant', figsize=(10, 7))
+fig = pyplot.figure('Last Week Data - Homeassistant', figsize=(12, 7))
 pyplot.style.use("ggplot")
 # format for X -axis displaying only hours and minutes
 myFormat = dates.DateFormatter('%d-%m-%Y %H:%M')

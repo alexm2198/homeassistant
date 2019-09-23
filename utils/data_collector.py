@@ -24,7 +24,6 @@ while True:
         # Receive the data in small chunks and retransmit it
         while True:
             data = connection.recv(32)
-
             if data:
                 #  Collecting data
                 str_data = str(data)

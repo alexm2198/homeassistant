@@ -7,9 +7,9 @@ import requests
 from PIL import Image, ImageTk
 
 from utils import globals
+from pages.Start import Start
 
-
-class Weather(Frame):
+class Weather(Start):
     city = "Bucharest"
     temp = 0
     pressure = 0
@@ -18,25 +18,21 @@ class Weather(Frame):
     id = 0
 
     def __init__(self, parent, controller, bg):
-        Frame.__init__(self, parent, bg=bg)
+        Start.__init__(self, parent, controller, bg=bg)
 
         self.get_location()
-        title_label = Label(self, text=f'Weather in {self.city}:', font=(globals.UNIVERSAL_FONT, 32), bg=bg)
-        title_label.place(relx=0.5, rely=0.1, anchor=CENTER)
+        title_label = Label(self, text=f'Weather in {self.city}:', font=(globals.UNIVERSAL_FONT, 20), bg=bg)
+        title_label.place(relx=0.6, rely=0.1, anchor=CENTER)
 
         tmp_image = Image.open("resources/button_home.png")
-        self.home_button_image = ImageTk.PhotoImage(tmp_image)
-        home_button = Button(self, image=self.home_button_image, border=0, bg=bg, activebackground=bg,
-                             command=lambda: controller.show_frame("Start"))
-        home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
+        self.weatherimage = ImageTk.PhotoImage(tmp_image)
 
-        self.weatherimage = self.home_button_image
-        self.temp_label = Label(self, font=(globals.UNIVERSAL_FONT, 20), bg=globals.UNIVERSAL_BG)
-        self.temp_label.place(relx=0.5, rely=0.6, anchor=CENTER)
-        self.pressure_label = Label(self, font=(globals.UNIVERSAL_FONT, 20), bg=globals.UNIVERSAL_BG)
-        self.pressure_label.place(relx=0.5, rely=0.7, anchor=CENTER)
-        self.humidity_label = Label(self, font=(globals.UNIVERSAL_FONT, 20), bg=globals.UNIVERSAL_BG)
-        self.humidity_label.place(relx=0.5, rely=0.8, anchor=CENTER)
+        self.temp_label = Label(self, font=(globals.UNIVERSAL_FONT, 16), bg=globals.UNIVERSAL_BG)
+        self.temp_label.place(relx=0.6, rely=0.7, anchor=CENTER)
+        self.pressure_label = Label(self, font=(globals.UNIVERSAL_FONT, 16), bg=globals.UNIVERSAL_BG)
+        self.pressure_label.place(relx=0.6, rely=0.8, anchor=CENTER)
+        self.humidity_label = Label(self, font=(globals.UNIVERSAL_FONT, 16), bg=globals.UNIVERSAL_BG)
+        self.humidity_label.place(relx=0.6, rely=0.9, anchor=CENTER)
 
     def get_weather(self):
         """Gets information about the weather from the OpenWeather API"""
@@ -97,9 +93,9 @@ class Weather(Frame):
             filename = "overcast"
 
         pil_weather_image = Image.open(f"resources/{filename}.png")
-        self.weather_image = ImageTk.PhotoImage(pil_weather_image.resize((480, 270)))
+        self.weather_image = ImageTk.PhotoImage(pil_weather_image.resize((400, 220)))
         image_label = Label(self, image=self.weather_image, bg=globals.UNIVERSAL_BG)
-        image_label.place(relx=0.5, rely=0.35, anchor=CENTER)
+        image_label.place(relx=0.6, rely=0.4, anchor=CENTER)
 
     def set_labels(self):
         """Update the text in the labels to match current weather variables"""

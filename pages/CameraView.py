@@ -1,16 +1,11 @@
 #!/usr/bin/python3
 from tkinter import *
 from PIL import Image, ImageTk
+from pages.Start import Start
 
 
-class CameraView(Frame):
+class CameraView(Start):
     def __init__(self, parent, controller, bg):
-        Frame.__init__(self, parent, bg=bg)
+        Start.__init__(self, parent,controller, bg=bg)
         title_label = Label(self, text='camera view')
-        title_label.place(relx=0.5, rely=0.1, anchor=CENTER)
-
-        temp_image = Image.open("resources/button_home.png")
-        self.home_button_image = ImageTk.PhotoImage(temp_image)
-        home_button = Button(self, image=self.home_button_image, border=0, bg=bg, activebackground=bg,
-                             command=lambda: controller.show_frame("Start"))
-        home_button.place(relx=0.5, rely=0.9, anchor=CENTER)
+        title_label.place(relx=0.6, rely=0.1, anchor=CENTER)

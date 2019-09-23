@@ -15,7 +15,7 @@ class App(Tk):
         # MainMenu
         MainMenu(self)
         # Setting the resolution fixed\
-        self.geometry("1280x720")
+        self.geometry("885x500")
         self.resizable(0, 0)
         # Setting the title
         self.title("Home Assistant")
@@ -32,7 +32,9 @@ class App(Tk):
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Start")
+        # Home Page
+        self.show_frame("Weather")
+
         self.tcp_server = system_handlers.call_script(r"utils/data_collector.py")
 
     # Shows different frames inside the app

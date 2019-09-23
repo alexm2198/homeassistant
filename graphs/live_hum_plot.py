@@ -13,7 +13,7 @@ run_once = True
 # !!! TIME INTERVAL FOR PLOTTING: 1 sec = 0.00001157 time units
 time_unit = 0.00001157
 
-fig = pyplot.figure(figsize=(10, 7))
+fig = pyplot.figure(figsize=(12, 7))
 # format for X -axis displaying only hours and minutes
 myFormat = dates.DateFormatter('%H:%M:%S')
 
