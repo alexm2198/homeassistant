@@ -4,6 +4,7 @@ from pages.Start import Start
 from pages.Weather import Weather
 from pages.Sensors import Sensors
 from pages.CameraView import CameraView
+from pages.Config import Config
 from utils import system_handlers, globals
 import os
 import signal
@@ -26,7 +27,7 @@ class App(Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (Start, Weather, Sensors, CameraView):
+        for F in (Start, Weather, Sensors, CameraView, Config):
             page_name = F.__name__
             frame = F(parent=container, controller=self, bg=globals.UNIVERSAL_BG)
             self.frames[page_name] = frame
@@ -73,6 +74,8 @@ class MainMenu:
         login_menu = Menu(file_menu, tearoff=False)
         root_menu.add_cascade(label='Log IN', menu=login_menu)
         login_menu.add_command(label='Sign UP')
+
+        root_menu.add_command(label='Config', command=lambda: master.show_frame("Config"))
 
 
 if __name__ == "__main__":

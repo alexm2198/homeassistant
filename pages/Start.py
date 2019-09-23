@@ -9,7 +9,7 @@ class Start(Frame):
     def __init__(self, parent, controller, bg):
         Frame.__init__(self, parent, bg=bg)
         self.button_images = {}
-        for image_name in ("weather", "sensors", "camera", "calendar","exit"):
+        for image_name in ("weather", "sensors", "camera", "calendar", "exit"):
             temp_image = Image.open(f"resources/button_{image_name}.png")
             self.button_images[image_name] = ImageTk.PhotoImage(temp_image)
 
