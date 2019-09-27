@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 import socket
 from tkinter import *
-
 import geoip2.database
 import requests
 from PIL import Image, ImageTk
 from utils import globals
 from pages.Start import Start
 from pages import Config
+
 
 class Weather(Start):
     city = Config.city

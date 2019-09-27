@@ -34,19 +34,25 @@ class App(Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         # Home Page
-        self.show_frame("Weather")
-
+        config_file = open("config.txt", "r+").read()
+        if len(config_file) > 1:
+            self.show_frame("Weather")
+        else:
+            self.show_frame("Config")
         self.tcp_server = system_handlers.call_script(r"utils/data_collector.py")
 
     # Shows different frames inside the app
     def show_frame(self, frame_name):
-        frame = self.frames[frame_name]
-        if frame_name == "Weather":
-            frame.get_location()
-            frame.get_weather()
-            frame.set_image()
-            frame.set_labels()
-        frame.tkraise()  # Shows the frame
+       try:
+            frame = self.frames[frame_name]
+            if frame_name == "Weather":
+                frame.get_location()
+                frame.get_weather()
+                frame.set_image()
+                frame.set_labels()
+            frame.tkraise()  # Shows the frame
+       except KeyError:
+            pass
 
     def close_server(self):
         try:

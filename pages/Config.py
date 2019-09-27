@@ -4,14 +4,14 @@ from PIL import Image, ImageTk
 from pages.Start import Start
 from utils import globals
 
-global name
-global city
+global name, city
 user_data = open("config.txt", "r+").read()
 name, city = user_data.split(",")
 
 class Config(Start):
     def __init__(self, parent, controller, bg):
-        Start.__init__(self, parent,controller, bg=bg)
+        Start.__init__(self, parent, controller, bg=bg)
+
         title_label = Label(self, text='Configurations', font=(globals.UNIVERSAL_FONT, 20), bg=bg)
         title_label.place(relx=0.6, rely=0.1, anchor=CENTER)
 
