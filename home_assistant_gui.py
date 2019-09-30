@@ -55,13 +55,11 @@ class App(Tk):
             pass
 
     def close_server(self):
-        try:
-            os.system(f"taskkill /f /im Python.exe")
-        except:
-            for line in os.popen("ps ax | grep -i " + "*python*" + " | grep -v grep"):
-                fields = line.split()
-                pid = fields[0]
-                os.kill(int(pid), signal.SIGKILL)
+        os.system(f"taskkill /f /im Python.exe")
+        for line in os.popen("ps ax | grep -i " + "*python*" + " | grep -v grep"):
+            fields = line.split()
+            pid = fields[0]
+            os.kill(int(pid), signal.SIGKILL)
         self.destroy()
 
 class MainMenu:
